@@ -26,14 +26,16 @@ class Viaje{
     private $codigoDeViaje;
     private $destino;
     private $cantMaxPasajero; //Cantidad Maxima de pasajeros. 
-    private $objPasajerosViaje; // Coleccion de personas. 
+    private $col_PasajerosViaje; // Coleccion de personas. 
+    private $objResponsableVia; //Responsable del viaje (CHOFER)
 
     // !CONSTRUCTOR 
-    public function __construct($codigoDeViaje, $destino, $cantMaxPasajero, $objPasajerosViaje){
+    public function __construct($codigoDeViaje, $destino, $cantMaxPasajero, $col_PasajerosViaje, $objResponsableVia){
         $this->codigoDeViaje = $codigoDeViaje;
         $this->destino = $destino;
         $this->cantMaxPasajero = $cantMaxPasajero;
-        $this->objPasajerosViaje = $objPasajerosViaje;
+        $this->col_PasajerosViaje = $col_PasajerosViaje;
+        $this->objResponsableVia = $objResponsableVia;
     }
 
     /** 
@@ -54,8 +56,12 @@ class Viaje{
         return $this->cantMaxPasajero;
      }
 
-     public function getObjPasajerosDelViaje(){
-        return $this->objPasajerosViaje;
+     public function getCol_PasajerosDelViaje(){
+        return $this->col_PasajerosViaje;
+     }
+
+     public function getObjResponsableVia(){
+         return $this->objResponsableVia;
      }
 
      /** 
@@ -77,7 +83,11 @@ class Viaje{
      }
 
      public function setNewPasajerosDelViaje($nuevoPasajerosDelViaje){
-        $this->objPasajerosViaje = $nuevoPasajerosDelViaje;
+        $this->col_PasajerosViaje = $nuevoPasajerosDelViaje;
+     }
+
+     public function setNewObjResponsable($nuevoRespon){
+         $this->objResponsableVia = $nuevoRespon;
      }
 
      /** 
@@ -87,11 +97,51 @@ class Viaje{
      */
     
      public function __toString(){
-        return "Codigo de viaje: " .$this->codigoDeViaje . "\n" . 
-                "Destino: " . $this->destino . "\n" . 
-                "Cantidad maxima de pasajeros: " .$this->cantMaxPasajero . "\n" . 
-                "Pasajeros del viaje: " . $this->objPasajerosViaje . "\n" ;
+        return "+++++++++++++INFO VIAJE+++++++++++++++++++++++++\n".
+               "Codigo de viaje: " .$this->codigoDeViaje . "\n" . 
+               "Destino: " . $this->destino . "\n" . 
+               "Cantidad maxima de pasajeros: " .$this->cantMaxPasajero . "\n" . 
+               "Pasajeros del viaje: " . $this->col_PasajerosViaje . "\n" . 
+               "Responsable del viaje: \n" . $this->objResponsableVia . "\n";
      }
 
+     public function verificarPasajero($dniPasajero){
+         $existe = false;
+         $colPasajero = $this->getCol_PasajerosDelViaje();
+         foreach ($colPasajero as $pasajero) { 
+             $dniPas =  $pasajero->getNumeroDocumento();
+               if ($dniPas == $dniPasajero) {
+                  $existe = true;
+               }
+         }
+         return $existe;
+      }
 
-}
+      public function setNewPasajero($objPasajero){
+         $col_actual = $this->getCol_PasajerosDelViaje();
+         array_push($col_actual, $objPasajero);
+         $this->setNewPasajerosDelViaje($col_actual);
+      }
+
+      public function obtenerPasajero($dniPas){
+         $colec_pasajeros = $this->getCol_PasajerosDelViaje();
+          foreach ($colec_pasajeros as $pasajero) {
+               $dniPasajero = $pasajero->getNumeroDocumento();
+               if ($dniPas == $dniPasajero) {
+                  return $pasajero;
+               }
+          }
+      }
+      
+      
+
+
+
+
+
+
+
+
+
+
+   }

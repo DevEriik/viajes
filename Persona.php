@@ -5,12 +5,14 @@ class Persona{
     private $nombre;
     private $apellido;
     private $numeroDocumento;
+    private $numeroTelefono;
 
     // !CONSTRUCTOR 
-    public function __construct($nombre, $apellido, $numeroDocumento){
+    public function __construct($nombre, $apellido, $numeroDocumento, $numeroTelefono){
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->numeroDocumento = $numeroDocumento;
+        $this->numeroTelefono = $numeroTelefono;
     }
 
     /** 
@@ -31,6 +33,10 @@ class Persona{
         return $this->numeroDocumento;
      }
 
+     public function getNumeroTelefono(){
+         return $this->numeroTelefono;
+     }
+
      /** 
      * ! **********************************************************************
      * ! *************************** METODO SETTER ****************************
@@ -49,6 +55,10 @@ class Persona{
         $this->numeroDocumento = $nuevoNumeroDocumento;
      }
 
+     public function setNewNumeroTelefono($nuevoNumTel){
+         $this->numeroTelefono = $nuevoNumTel;
+     }
+
      /** 
      * ! **********************************************************************
      * ! *************************** METODO __toString ************************
@@ -58,6 +68,7 @@ class Persona{
      public function __toString(){
         return "Nombre: " .$this->nombre. "\n" . 
                 "Apellido: " . $this->apellido . "\n" . 
-                "Numero DNI: " .$this->numeroDocumento . "\n";
+                "Numero DNI: " .$this->numeroDocumento . "\n" . 
+                "Numero de Telefono: $this->numeroTelefono" . "\n";
      }
 }
