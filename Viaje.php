@@ -98,12 +98,18 @@ class Viaje{
     
      public function __toString(){
         return "+++++++++++++INFO VIAJE+++++++++++++++++++++++++\n".
-               "Codigo de viaje: " .$this->codigoDeViaje . "\n" . 
-               "Destino: " . $this->destino . "\n" . 
-               "Cantidad maxima de pasajeros: " .$this->cantMaxPasajero . "\n" . 
-               "Pasajeros del viaje: " . $this->col_PasajerosViaje . "\n" . 
-               "Responsable del viaje: \n" . $this->objResponsableVia . "\n";
+               "Codigo de viaje: " .$this->getCodigoDeViaje() . "\n" . 
+               "Destino: " . $this->getDestino() . "\n" . 
+               "Cantidad maxima de pasajeros: " .$this->getCantMaxPasajero() . "\n" . 
+               "Pasajeros del viaje: " . $this->ConvertirEnString() . "\n" . 
+               "Responsable del viaje: \n" . $this->getObjResponsableVia() . "\n";
      }
+
+     /** 
+     * ! **********************************************************************
+     * ! *************************** METODOS **********************************
+     * ! **********************************************************************
+     */
 
      public function verificarPasajero($dniPasajero){
          $existe = false;
@@ -132,16 +138,10 @@ class Viaje{
                }
           }
       }
-      
-      
 
-
-
-
-
-
-
-
-
-
+      //TODO:Funcion creada para poder convertir la coleccion de pasajeros y pasarla por le __toString.
+      public function ConvertirEnString(){
+         $string = implode('', $this->getCol_PasajerosDelViaje());
+         return $string;
+      }
    }

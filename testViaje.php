@@ -36,7 +36,7 @@ $coleccionPasajeros = [
  */
 
 $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable);
-//echo $objViaje;
+echo $objViaje;
 
 
 
