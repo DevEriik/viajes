@@ -57,9 +57,9 @@ class ResponsableV{
 
     public function __toString(){
         return   "*****************RESPONSABLE******************************\n" .
-                "Numero de Empleado: " . $this->numEmpleado . "\n" . 
-                "Numero de Licencia: " .$this->numLicencia . "\n" . 
-                "Nombre y Apellido: " .$this->nombreYApellido . "\n" . 
+                "Numero de Empleado: " . $this->getNumEmpleado() . "\n" . 
+                "Numero de Licencia: " .$this->getNumLicencia() . "\n" . 
+                "Nombre y Apellido: " .$this->getNombreYApellido() . "\n" . 
                  "**********************************************************\n";
     }
 }

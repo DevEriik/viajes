@@ -72,7 +72,7 @@ $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable
                         $objViaje->setNewCodigoDeViaje($codigoViaje);
                         $objViaje->setNewDestino($destinoViaje);
                         $objViaje->setNewCantMaxPasajeros($cantMaximaPasaj);
-                        echo "Informacion ingresada exitosamente. \n";
+                        echo "------------Informacion ingresada exitosamente.--------------- \n";
                         break;
                     case '2':
                         $nombrePasajero = readline("Ingrese el nombre del pasajero: \n");
@@ -81,12 +81,12 @@ $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable
                         $telPasajero = readline("Ingrese celular del pasajero: \n");
 
                         if ($objViaje->verificarPasajero($dniPasajero)) {
-                            echo "El pasajero ya esta cargado en sistema. \n";
+                            echo "-*-*-*-*-*-*El pasajero ya esta cargado en el sistema.-*-*-*-*-*-*-* \n";
                             break;
                         }else{
                             $nuevoPasajero = new Persona($nombrePasajero, $apellidoPasajero, $dniPasajero, $telPasajero);
                             $objViaje->setNewPasajero($nuevoPasajero);
-                            echo "Usuario ingresado correctamente. \n";
+                            echo "----------Usuario ingresado correctamente.--------------- \n";
                         }
                         break;
                     case '3':
@@ -95,12 +95,12 @@ $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable
                         $nomYApelli = readline("Ingrese el nombre y apellido: \n");
                         $numEmple = $objViaje->getObjResponsableVia()->getNumEmpleado();
                         if ($numEmpleado == $numEmple) {
-                            echo "El empleado ya existe. \n";
+                            echo "//**//**//**//**El empleado ya existe.//**//**//**//** \n";
                             break;
                         }else {
                             $nuevoEmpleado = new ResponsableV($numEmpleado, $numLicencia, $nomYApelli);
                             $objViaje->setNewObjResponsable($nuevoEmpleado);
-                            echo "Empleado cargado exitosamente. \n";
+                            echo "*/*/*/*/*/Empleado cargado exitosamente.*/*/*/*/*/*/ \n";
                         }
                         break;
                     case '4':
@@ -128,11 +128,11 @@ $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable
                         $objViaje->setNewCodigoDeViaje($nuevoNumViaje);
                         $objViaje->setNewDestino($nuevoDestino);
                         $objViaje->setNewCantMaxPasajeros($nuevaCantMaximaPasaj);
-                        echo "Modificados exitosamente. \n";
+                        echo "-----------Modificados exitosamente.------------- \n";
                         break;
                     case '2':
                         $veriDNI = readline("Ingrese el DNI del usuario que quiere modificar: \n");
-                            if ($objViaje->verificarPasajero($verifDNI)) {
+                            if ($objViaje->verificarPasajero($veriDNI)) {
                                 $nuevoNombre = readline("Ingrese el nuevo nombre: \n");
                                 $nuevoApellido = readline("Ingrese el nuevo apellido: \n");
                                 $nuevoDNI = readline("Ingrese el nuevo numero de DNI: \n");
@@ -144,7 +144,7 @@ $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable
                                 $pasajero->setNewNumeroTelefono($nuevoTel);
                                 break;
                             }
-                            echo "El DNI del pasajero ingresado no se encuentra. \n";  
+                            echo "-*-*-*-*-*-*-*El DNI del pasajero ingresado no se encuentra.-*-*-*-*-*-*-* \n";  
                         break;
                     case '3':
                         $nuevoNumEmpleado = readline("Ingrese el nuevo numero de empleado: \n");
@@ -167,7 +167,7 @@ $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable
         case '3': //TODO: Muestra los datos al usuario.
             do {
                 echo "1.Datos Viaje. \n";
-                echo "2.Datos Pasajero. \n";
+                echo "2.Datos Pasajeros. \n";
                 echo "3.Datos Responsable. \n";
                 echo "4.Salir. \n";
                 $opcion4 = readline("Ingrese que dato quiere ver: \n");
@@ -184,13 +184,21 @@ $objViaje = new Viaje(485, "Bariloche", 50, $coleccionPasajeros, $objResponsable
                         echo "////////////////////////////////////////////// \n";
                         break;
                     case '2':
-                            //!FALTA SOLO ESTA PARTE...
+                            $string = implode('' , $objViaje->getCol_PasajerosDelViaje()); //!implode convierte un array (coleccion), en una cadena de caracteres.
+                            echo $string . "\n";
                         break;
                     case '3':
-                        
+                        $datoNumEmpleado = $objViaje->getObjResponsableVia()->getNumEmpleado();
+                        $datoNumLicencia = $objViaje->getObjResponsableVia()->getNumLicencia();
+                        $datoNombreEmpleado = $objViaje->getObjResponsableVia()->getNombreYApellido();
+                        echo "////////////////////////////////////////////// \n";
+                        echo "Numero del responsable: " . $datoNumEmpleado . "\n";
+                        echo "Numero de licencia del responsable: " . $datoNumLicencia . "\n";
+                        echo "Nombre y apellido del responsable: " . $datoNombreEmpleado . "\n";
+                        echo "////////////////////////////////////////////// \n";
                         break;
                     case '4':
-                        echo "Saliendo...";
+                        echo "Saliendo...\n";
                         break;    
                     default:
                         echo "La opcion ingresada es incorrecta, ingrese un digito del 1 al 4. \n";
